@@ -64,4 +64,28 @@ export const sendRegistrationEmail = async (userEmail,userName) => {
     return await sendEmail(userEmail, subject, text, html);
 }
 
+export const sendLoginEmail = async (userEmail, userName) => {
+   const subject = 'New Sign-In Detected';
+
+   const text = `Hi ${userName},
+
+    A new login was detected on your account. If this wasn't you, please secure your account immediately.
+
+    Best regards,
+    The Team`;
+
+    const html = `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+        <h3 style="color: #2c3e50;">New Sign-In Detected</h3>
+        <p>Hi ${userName},</p>
+        <p>A new login was detected on your account.</p>
+        <p style="color: #d9534f;">If this was not you, please change your password immediately.</p>
+        <hr style="border: none; border-top: 1px solid #eee; margin: 15px 0;" />
+        <p style="font-size: 0.9em; color: #777;">Best regards,<br/>The Team</p>
+        </div>
+    `;
+
+  return await sendEmail(userEmail, subject, text, html);
+};
+
 export default sendEmail;
