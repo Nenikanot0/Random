@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
-import { sendRegistrationEmail } from "../services/email.service.js";
+import { sendRegistrationEmail,sendLoginEmail } from "../services/email.service.js";
 
 export const registerUser = async(req,res) => {
     try{
@@ -74,6 +74,9 @@ export const loginUser = async(req,res) => {
             },
             token
         });
+
+        await sendLoginEmail(email,user.username);
+
     }catch(error){
         console.log(error.message);
         return res.status(500).json({ message: process.env.NODE_ENV === "production" ? "Internal server error" : error.message});
