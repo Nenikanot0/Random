@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.route.js";
+import accountRouter from "./routes/account.route.js";
 
 const app = express();
 
@@ -22,7 +23,7 @@ app.use(express.static("public"));
 
 //routes 
 app.use("/api/auth",authRouter);
-
+app.use("/api/accounts",accountRouter);
 
 
 // Handle unknown routes
